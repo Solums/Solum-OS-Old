@@ -21,7 +21,7 @@
 #include "arch.h"
 #include "kernel/msg/panic.h"
 
-void panic (void) 
+void panic () 
 {
     printk("\n");
     printk("----- [ Kernel Panic ] -----\n");

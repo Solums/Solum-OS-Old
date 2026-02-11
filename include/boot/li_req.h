@@ -30,6 +30,6 @@ extern volatile struct limine_rsdp_request rsdp_request;
 extern volatile struct limine_module_request module_request;
 extern volatile struct limine_kernel_file_request kernel_file_request;
 
-char *get_cmdline (void);
+char *get_cmdline ();
 
 #endif

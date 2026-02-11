@@ -62,6 +62,6 @@ __attribute__((used, section(".limine_requests"))) volatile struct limine_kernel
     .response = 0,
 };
 
-char *get_cmdline (void) {
+char *get_cmdline () {
     return kernel_file_request.response->kernel_file->cmdline;
 }

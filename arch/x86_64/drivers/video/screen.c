@@ -65,7 +65,7 @@ void screen_putc(char c, uint32_t x, uint32_t y, uint32_t color) {
     }
 }
 
-void screen_init(void){
+void screen_init(){
     if (framebuffer_request.response && framebuffer_request.response->framebuffer_count > 0) {
         framebuffer = framebuffer_request.response->framebuffers[0];
         framebuffer_addr = (uint32_t*)framebuffer->address;
@@ -143,7 +143,7 @@ void screen_scroll(uint32_t scroll_px, uint32_t color) {
     }
 }
 
-void print_newline(void) {
+void print_newline() {
     cursor_y += CHAR_H;
 
     if (cursor_y > screen_height - SCREEN_MARGIN) {

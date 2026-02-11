@@ -38,14 +38,14 @@
 #include "kernel/msg/panic.h"
 #include "drivers/port/serial.h"
 
-static void display_title(void) {
+static void display_title() {
     printk("========================================\n");
     printk("   Solum OS "VER_FUL"\n");
     printk("========================================\n");
     printk("\n");
 }
 
-static void display_bootloader_info(void) {
+static void display_bootloader_info() {
     if (bootloader_info_request.response) {
         struct limine_bootloader_info_response *info = bootloader_info_request.response;
         
@@ -63,7 +63,7 @@ static void display_bootloader_info(void) {
     }
 }
 
-static void display_framebuffer_info(void) {
+static void display_framebuffer_info() {
 
     struct limine_framebuffer *framebuffer;
     
@@ -78,7 +78,7 @@ static void display_framebuffer_info(void) {
     printk("\n");
 }
 
-static void display_memory_info(void) {
+static void display_memory_info() {
     if (!memmap_request.response) return;
     
     printk("Memory Information:\n");
@@ -102,7 +102,7 @@ static void display_memory_info(void) {
     printk("\n");
 }
 
-static void display_kernel_address_info(void) {
+static void display_kernel_address_info() {
     if (!kernel_address_request.response) return;
     
     printk("Kernel Address Information:\n");
@@ -116,7 +116,7 @@ static void display_kernel_address_info(void) {
     printk("\n");
 }
 
-static void display_acpi_info(void) {
+static void display_acpi_info() {
     if (!rsdp_request.response) return;
     
     printk("ACPI RSDP Information:\n");
@@ -130,7 +130,7 @@ static void display_acpi_info(void) {
     printk("\n");
 }
 
-static void display_module_info(void) {
+static void display_module_info() {
     if (!module_request.response) return;
     
     struct limine_module_response *modules = module_request.response;
@@ -168,7 +168,7 @@ static void display_module_info(void) {
 
 #ifdef __x86_64__
 
-void display_ASCII_icon(void) {
+void display_ASCII_icon() {
     screen_write("        :=+*####*+=:",SCREEN_MARGIN+CHAR_W*43,SCREEN_MARGIN+CHAR_H*6,VIDEO_WHITE);              
     screen_write("     -*@@@@@@@@@@@@@@#=.",SCREEN_MARGIN+CHAR_W*43,SCREEN_MARGIN+CHAR_H*7,VIDEO_WHITE);          
     screen_write("   -%@@@@@#++++***=--==-",SCREEN_MARGIN+CHAR_W*43,SCREEN_MARGIN+CHAR_H*8,VIDEO_WHITE);          
@@ -187,7 +187,7 @@ void display_ASCII_icon(void) {
 
 #endif
 
-void kernel_main(void) {
+void kernel_main() {
 
     tty_init();
     display_title();

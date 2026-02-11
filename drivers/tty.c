@@ -49,25 +49,25 @@ static struct {
     bool buffer_full;             
 } tty_ring_buffer = {.head = 0, .tail = 0, .flush_on_newline = true, .buffer_full = false};
 
-static inline void tty_lock_acquire(void);
-static inline void tty_lock_release(void);
+static inline void tty_lock_acquire();
+static inline void tty_lock_release();
 #ifdef __x86_64__
 static void tty_output_char_screen(char c);
 #endif
 static void tty_parse_cmdline(const char *cmdline);
-static void tty_init_devices(void);
-static void tty_flush_buffer(void);
+static void tty_init_devices();
+static void tty_flush_buffer();
 static void tty_buffer_putc(char c);
 static void tty_buffer_puts(const char *s);
-static int tty_device_amount (void);
+static int tty_device_amount ();
 
-static inline void tty_lock_acquire(void) {
+static inline void tty_lock_acquire() {
     while (atomic_exchange_int(&tty_lock, 1)) {
         pause();
     }
 }
 
-static inline void tty_lock_release(void) {
+static inline void tty_lock_release() {
     atomic_store_release_int(&tty_lock, 0);
 }
 
@@ -119,7 +119,7 @@ static void tty_buffer_puts(const char *s) {
     }
 }
 
-static void tty_flush_buffer(void) {
+static void tty_flush_buffer() {
     if (!tty_ring_buffer.buffer_full && tty_ring_buffer.head == tty_ring_buffer.tail) {
         return;
     }
@@ -230,7 +230,7 @@ if (!any) {
 #endif
     }
 
-static void tty_init_devices(void) {
+static void tty_init_devices() {
 #ifdef __x86_64__
     if (out_screen) {
         screen_init();
@@ -245,7 +245,7 @@ static void tty_init_devices(void) {
     }
 }
 
-static int tty_device_amount (void) {
+static int tty_device_amount () {
     unsigned int j = 0;
     for (int i = 0; i < MAX_SERIAL_DEVS; i++) {
         if (out_serial[i]) {
@@ -262,7 +262,7 @@ static int tty_device_amount (void) {
     }
 }
 
-void tty_init(void) {
+void tty_init() {
     const char *cmdline = get_cmdline();
 
     tty_parse_cmdline(cmdline);
@@ -307,13 +307,13 @@ int tty_puts(const char *s) {
     return strlen(s);
 }
 
-void tty_flush(void) {
+void tty_flush() {
     tty_lock_acquire();
     tty_flush_buffer();
     tty_lock_release();
 }
 
-size_t tty_buffer_usage(void) {
+size_t tty_buffer_usage() {
     tty_lock_acquire();
     size_t usage;
     

@@ -50,10 +50,10 @@ extern uint32_t bpp;
 extern uint32_t cursor_x;
 extern uint32_t cursor_y;
 
-void screen_init(void);
+void screen_init();
 void screen_putc(char c, uint32_t x, uint32_t y, uint32_t color);
 void screen_write(const char *str, uint32_t x, uint32_t y, uint32_t color);
 void screen_clear(uint32_t color);
-void print_newline(void); // 由于某些原因必须保留 for some reasons had to leave
+void print_newline(); // 由于某些原因必须保留 for some reasons had to leave
 
 #endif

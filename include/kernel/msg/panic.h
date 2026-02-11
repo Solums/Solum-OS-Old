@@ -23,6 +23,6 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-void panic(void);
+void panic();
 
 #endif

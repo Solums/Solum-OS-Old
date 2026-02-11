@@ -26,11 +26,11 @@
 
 #define TTY_LINE_BUF  256
 
-void tty_init(void);
+void tty_init();
 int tty_write(const char *buf, size_t len);
 int tty_putc(char c);
 int tty_puts(const char *s);
-void tty_flush(void);
-size_t tty_buffer_usage(void);
+void tty_flush();
+size_t tty_buffer_usage();
 
 #endif
