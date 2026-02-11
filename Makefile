@@ -104,17 +104,19 @@ prep:
 	@if [ ! -d "build/isodir/Solum" ]; then mkdir build/isodir/Solum; fi
 
 # create bootloader
-	@if [ ! -d "assets/Limine" ]; then cd assets && printf "\n" && printf "I'm Working hard. Don't press your Ctrl and C. They are dirty and smells awful !!" && \
-	git clone https://codeberg.org/Limine/Limine.git --branch=v10.5.0-binary --depth=1 && rm Limine/.gitignore && rm -r Limine/.git \
+	@if [ ! -d "assets/Limine" ]; then cd assets && printf "\n" && printf "I'm Working hard. Don't press your Ctrl and C. They are dirty and smells awful !!\n" && \
+	git clone https://codeberg.org/Limine/Limine.git --branch=v10.5.0-binary --depth=1 && rm Limine/.gitignore && rm -rf Limine/.git \
 	&& rm Limine/limine-bios-hdd.h && rm Limine/limine.c && rm Limine/Makefile; fi
 	@if [ ! -e "build/isodir/EFI/BOOT/BOOTAA64.EFI" ] || [ ! -e "build/isodir/EFI/BOOT/BOOTLOONGARCH64.EFI" ] || [ ! -e "build/isodir/EFI/BOOT/BOOTRISCV64.EFI" ] || [ ! -e "build/isodir/EFI/BOOT/BOOTX64.EFI" ]; then \
-		cd build/Limine && cp -n BOOTX64.EFI BOOTAA64.EFI BOOTLOONGARCH64.EFI BOOTRISCV64.EFI ../../build/isodir/EFI/BOOT; fi
+		cd assets/Limine && cp BOOTX64.EFI BOOTAA64.EFI BOOTLOONGARCH64.EFI BOOTRISCV64.EFI ../../build/isodir/EFI/BOOT; fi
 	@if [ ! -e "build/isodir/limine/limine-uefi-cd.bin" ] || [ ! -e "build/isodir/limine/limine-bios-cd.bin" ] || [ ! -e "build/isodir/limine/limine-bios.sys" ]; then \
-		cd Limine && cp -n limine-uefi-cd.bin limine-bios.sys limine-bios-cd.bin ../isodir/limine; fi
+		cd assets/Limine && cp limine-uefi-cd.bin limine-bios.sys limine-bios-cd.bin ../../build/isodir/limine; fi
 
 # create build directory 
 	@if [ ! -d "build/x86_64" ]; then mkdir -p build/x86_64; fi
 	@if [ ! -d "build/aarch64" ]; then mkdir -p build/aarch64; fi
 	@if [ ! -d "build/riscv64" ]; then mkdir -p build/riscv64; fi
+
+	@printf "\033[1;32m[OK]\033[0m Preperation work\n"
 
 .PHONY: iso info clean prep 

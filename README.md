@@ -28,7 +28,7 @@ make iso                   # Build ISO (default x86_64)
 make iso ARCH=aarch64      # Build ISO (aarch64)
 # ARCH parameter is allowed (placed at the end)
 make run_b                 # Build and boot QEMU using BIOS (only x86_64)
-make run_u                 # Build and boot QEMU using UEFI
+make run                   # Build and boot QEMU using UEFI
 make clean                 # Clean build files
 ```
 

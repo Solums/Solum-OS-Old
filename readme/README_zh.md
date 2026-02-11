@@ -28,7 +28,7 @@ make iso                    # 构建ISO (默认x86_64)
 make iso ARCH=aarch64       # 构建ISO (aarch64)
 # 皆允许 ARCH 参数(放在最后)
 make run_b                  # 构建并使用BIOS启动 QEMU (仅x86_64)
-make run_u                  # 构建并使用UEFI启动 QEMU
+make run                    # 构建并使用UEFI启动 QEMU
 make clean                  # 清理构建文件
 ```
 

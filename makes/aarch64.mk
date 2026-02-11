@@ -29,7 +29,7 @@ else ifeq ($(BUILD),debug)
 CFLAGS := -g -c -O0 -I$(INCDIR1) -I$(INCDIR2) -nostdlib -nostartfiles -nodefaultlibs -ffreestanding -z noexecstack
 endif
 
-run_u: info $(ISO)
+run: info $(ISO)
 	@qemu-system-aarch64 -machine virt -cpu cortex-a57 -m 1G \
 	-bios assets/AARCH_EFI.fd \
 	-cdrom $(ISO) -nographic

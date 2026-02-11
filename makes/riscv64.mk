@@ -29,7 +29,7 @@ else ifeq ($(BUILD),debug)
 CFLAGS := -g -c -O0 -I$(INCDIR1) -I$(INCDIR2) -nostdlib -nostartfiles -nodefaultlibs -ffreestanding -z noexecstack
 endif
 
-run_u: info $(ISO)
+run: info $(ISO)
 	@cp assets/RISCV_VIRT_VARS.fd.back assets/RISCV_VIRT_VARS.fd
 	@qemu-system-riscv64 \
   		-nographic \

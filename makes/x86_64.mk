@@ -32,5 +32,5 @@ endif
 run_b: info $(ISO)
 	@qemu-system-x86_64 -m 1G -cdrom $(ISO) -no-shutdown -no-reboot
 
-run_u: info $(ISO)
+run: info $(ISO)
 	@qemu-system-x86_64 -m 1G -bios assets/X86_64_EFI.fd -cdrom $(ISO) -no-shutdown -no-reboot
